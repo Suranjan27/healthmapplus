@@ -6,6 +6,7 @@ function SignIn() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
@@ -43,14 +44,23 @@ function SignIn() {
               required
             />
           </div>
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full p-3 border-2 border-h-light rounded-lg outline-none focus:border-h-orange"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="w-full p-3 pr-12 border-2 border-h-light rounded-lg outline-none focus:border-h-orange"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3.5 text-gray-500 hover:text-gray-700 focus:outline-none"
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
 
           <div className="flex justify-end">
             <span 
